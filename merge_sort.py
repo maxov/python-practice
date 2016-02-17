@@ -1,5 +1,19 @@
 import random
 
+def combine_sorted(c1, c2):
+    len_c1, len_c2 = len(c1), len(c2)
+    combined = []
+    i = 0
+    j = 0
+    while i < len_c1 or j < len_c2:
+        if j >= len_c2 or (i < len_c1 and c1[i] < c2[j]):
+            combined.append(c1[i])
+            i += 1
+        else:
+            combined.append(c2[j])
+            j += 1
+    return combined
+
 def merge_sort(coll):
     if len(coll) <= 1:
         return coll
@@ -7,19 +21,7 @@ def merge_sort(coll):
         midpoint = int(len(coll) / 2)
         sorted_1 = merge_sort(coll[:midpoint])
         sorted_2 = merge_sort(coll[midpoint:])
-        i = 0
-        j = 0
-        len_s1 = len(sorted_1)
-        len_s2 = len(sorted_2)
-        coll_final = []
-        while i < len_s1 and j < len_s2:
-            if sorted_1[i] < sorted_2[j]:
-                coll_final.append(sorted_1[i])
-                i += 1
-            else:
-                coll_final.append(sorted_2[j])
-                j += 1
-        return coll_final
+        return combine_sorted(sorted_1, sorted_2)
 
 my_coll = list(range(0, 10))
 shuffled = my_coll.copy()
