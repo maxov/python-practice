@@ -1,5 +1,17 @@
 import random
 
+def recursive_combine_sorted(c1, c2):
+    if len(c1) == 0:
+        return c2
+    elif len(c2) == 0:
+        return c1
+    else:
+        if c1[0] < c2[0]:
+            return c1[:1] + recursive_combine_sorted(c1[1:], c2)
+        else:
+            return c2[:1] + recursive_combine_sorted(c1, c2[1:])
+
+
 def combine_sorted(c1, c2):
     len_c1, len_c2 = len(c1), len(c2)
     combined = []
@@ -21,7 +33,7 @@ def merge_sort(coll):
         midpoint = int(len(coll) / 2)
         sorted_1 = merge_sort(coll[:midpoint])
         sorted_2 = merge_sort(coll[midpoint:])
-        return combine_sorted(sorted_1, sorted_2)
+        return recursive_combine_sorted(sorted_1, sorted_2)
 
 my_coll = list(range(0, 10))
 shuffled = my_coll.copy()
