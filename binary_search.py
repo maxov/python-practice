@@ -1,17 +1,15 @@
 def binary_search(coll, val):
     def recurse(start, end):
-        if start == end:
-            return start
+        middle = int((start + end) / 2)
+        compare = coll[middle]
+        if compare > val:
+            return recurse(start, middle)
+        elif compare < val:
+            return recurse(middle, end)
         else:
-            middle = int((start + end) / 2)
-            if coll[middle] > val:
-                return recurse(start, middle)
-            else:
-                return recurse(middle, end)
+            return middle
     return recurse(0, len(coll) - 1)
 
 my_coll = [1, 3, 6, 7, 8, 10]
 
-binary_search(my_coll, 6)
-
-# for some reason it goes infinitely, no idea why.
+print(binary_search(my_coll, 6))
