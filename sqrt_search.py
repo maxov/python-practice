@@ -1,6 +1,6 @@
 # taken from kifi interview:
 # implement the square root function using a continuous binary search and x^2.
-delta = 0.000000000000000000000000001
+delta = 0.0000000000001
 
 def sqrt(x):
     def recurse(lower, upper):
@@ -42,6 +42,9 @@ def sqrt_iter(x):
         else:
             upper = midpoint
 
-assert sqrt(1) == 1
+import math
 
-print(sqrt_iter(4))
+assert sqrt(1) == 1
+assert abs(sqrt(2) - math.sqrt(2)) < delta
+assert abs(sqrt(4) - math.sqrt(4)) < delta
+assert abs(sqrt(0.5) - math.sqrt(0.5)) < delta
