@@ -30,6 +30,4 @@ my_coll = list(range(0, 10))
 shuffled = my_coll.copy()
 random.shuffle(shuffled)
 
-print(quick_sort(shuffled))
-
 assert quick_sort(shuffled) == my_coll
