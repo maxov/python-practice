@@ -13,15 +13,18 @@ def quick_sort(coll):
     else:
         pivot_i = random.randrange(len(coll))
         pivot = coll[pivot_i]
-        i = 0
+
         new_coll = coll.copy()
         swap(new_coll, pivot_i, len(new_coll) - 1)
-        for j in range(len(new_coll) - 2):
+
+        i = 0
+        for j in range(len(new_coll) - 1):
             if new_coll[j] <= pivot:
                 swap(new_coll, i, j)
                 i += 1
         swap(new_coll, i, len(new_coll) - 1)
-        return quick_sort(new_coll[:i - 1]) + [pivot] + quick_sort(new_coll[i + 1:])
+
+        return quick_sort(new_coll[:i]) + [pivot] + quick_sort(new_coll[i + 1:])
 
 my_coll = list(range(0, 10))
 shuffled = my_coll.copy()
